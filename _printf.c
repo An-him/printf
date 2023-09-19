@@ -7,12 +7,12 @@
 **/
 int _printf(const char *format, ...)
 {
-va_list words;
+va_list args;
 int charprinted = 0;
 char comma;
 char percent = '%';
 size_t len = 0;
-va_start(words, format);
+va_start(args, format);
 while (*format)
 {
 if (*format == '%')
@@ -20,12 +20,12 @@ if (*format == '%')
 format++;
 if (*format == 'c')
 {
-comma = (char)va_arg(words, int);
+comma = (char)va_arg(args, int);
 charprinted += write(STDOUT_FILENO, &comma, 1);
 }
 else if (*format == 's')
 {
-char *s = va_arg(words, char *);
+char *s = va_arg(args, char *);
 while (*s != '\0')
 {
 len++;
@@ -43,6 +43,6 @@ charprinted += write(STDOUT_FILENO, format, 1);
 }
 format++;
 }
-va_end(words);
+va_end(args);
 return (charprinted);
 }
