@@ -41,7 +41,9 @@ charprinted++;
 }
 else
 {
-write(STDOUT_FILENO, &format[i], 1);
+buffer[0] = format[i];
+buffer[i] = '\0';
+write(STDOUT_FILENO, buffer, 1);
 charprinted++;
 }
 }
