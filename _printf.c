@@ -9,9 +9,10 @@
 int _printf(const char *format, ...)
 {
 va_list words;
-int i, len, charprinted = 0;
+int i, charprinted = 0;
 char comma;
 char percent = '%';
+size_t len;
 va_start(words, format);
 for (i = 0; format[i] != '\0'; i++)
 {
@@ -20,13 +21,14 @@ if (format[i] == '%')
 i++;
 if (format[i] == 'c')
 {
-comma = va_arg(words, int);
+comma = (char)va_arg(words, int);
 write(STDOUT_FILENO, &comma, 1);
 charprinted++;
 }
 else if (format[i] == 's')
 {
 char *s = va_arg(words, char *);
+len = 0;
 while (s[len] != '\0')
 {
 len++;
