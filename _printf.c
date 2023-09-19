@@ -12,39 +12,38 @@ va_list words;
 int i, charprinted = 0;
 char comma;
 char percent = '%';
-size_t len;
+size_t len = 0;
 va_start(words, format);
-for (i = 0; format[i] != '\0'; i++)
+while (*format)
 {
-if (format[i] == '%')
+if (*format == '%')
 {
 i++;
-if (format[i] == 'c')
+if (*format == 'c')
 {
 comma = (char)va_arg(words, int);
 write(STDOUT_FILENO, &comma, 1);
 charprinted++;
 }
-else if (format[i] == 's')
+else if (*format == 's')
 {
 char *s = va_arg(words, char *);
 len = 0;
-while (s[len] != '\0')
+while (*s != '\0')
 {
-len++;
-}
 write(STDOUT_FILENO, s, len);
+s++;
 charprinted += len;
 }
-else if (format[i] == '%')
+}
+else if (*format == '%')
 {
-
 write(STDOUT_FILENO, &percent, 1);
 charprinted++;
 }
 else
 {
-write(STDOUT_FILENO, &format[i], 1);
+write(STDOUT_FILENO, format, 1);
 charprinted++;
 }
 }
