@@ -1,59 +1,34 @@
 #include "main.h"
 /**
- *_printf - produces output according to a format.
- *@format: character for formatting
- *Return: int
- **/
+*_printf - function output according to a format.
+*@format: dormat speciiier for output
+*@...: for the variable number of args
+*Return: number of characters printed - '\0'
+**/
 
 int _printf(const char *format, ...)
 {
-va_list arg;
-int done = 0;
-va_start(arg, format);
-while (*format)
+va_list words;
+int i, charprinted = 0;
+char *comma = "";
+va_start(words, format);
+for (i = 0; format[i] != '\0'; i++)
 {
-if (*format == '%')
+if (format[i] == '%')
 {
-format++;
-if (*format == '\0')
-break;
-if (*format == 'c')
+i++;
+if (format[i] == 'c')
 {
-char c = va_arg(arg, int);
-write(1, &c, 1);
-done++;
+printf("%s%c", comma, va_arg(words, int));
+charprinted++;
 }
-else if (*format == 's')
+else if (format[i] == 's')
 {
-char *str = va_arg(arg, char *);
-if (str == NULL)
-str = "(null)";
-while (*str)
-{
-write(1, str, 1);
-str++;
-done++;
+printf("%s%s", comma, va_arg(words, char *));
+charprinted++;
 }
 }
-else if (*format == '%')
-{
-write(1, "%", 1);
-done++;
 }
-else
-{
-write(1, "%", 1);
-write(1, format, 1);
-done += 2;
-}
-}
-else
-{
-write(1, format, 1);
-done++;
-}
-format++;
-}
-va_end(arg);
-return done; 
+va_end(words);
+return (charprinted);
 }
