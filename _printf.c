@@ -27,6 +27,15 @@ else if (format[i] == 's')
 printf("%s%s", comma, va_arg(words, char *));
 charprinted++;
 }
+else if (format[i] == '%')
+{
+putchar('%');
+}
+else
+{
+putchar(format[i]);
+charprinted++;
+}
 }
 }
 va_end(words);
