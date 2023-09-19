@@ -9,9 +9,9 @@
 int _printf(const char *format, ...)
 {
 va_list words;
-int i, charprinted = 0;
+int i, len, charprinted = 0;
 char comma;
-char buffer[2];
+char percent = '%';
 va_start(words, format);
 for (i = 0; format[i] != '\0'; i++)
 {
@@ -21,29 +21,28 @@ i++;
 if (format[i] == 'c')
 {
 comma = va_arg(words, int);
-buffer[0] = comma;
-buffer[1] = '\0';
-write(STDOUT_FILENO, buffer, 1);
+write(STDOUT_FILENO, &comma, 1);
 charprinted++;
 }
 else if (format[i] == 's')
 {
 char *s = va_arg(words, char *);
-write(STDOUT_FILENO, s, strlen(s));
-charprinted += strlen(s);
+while (s[len] != '\0')
+{
+len++;
+}
+write(STDOUT_FILENO, s, len);
+charprinted += len;
 }
 else if (format[i] == '%')
 {
-buffer[0] = '%';
-buffer[1] = '\0';
-write(STDOUT_FILENO, buffer, 1);
+
+write(STDOUT_FILENO, &percent, 1);
 charprinted++;
 }
 else
 {
-buffer[0] = format[i];
-buffer[i] = '\0';
-write(STDOUT_FILENO, buffer, 1);
+write(STDOUT_FILENO, &format[i], 1);
 charprinted++;
 }
 }
