@@ -10,7 +10,8 @@ int _printf(const char *format, ...)
 {
 va_list words;
 int i, charprinted = 0;
-char *comma = "";
+char comma;
+char buffer[2];
 va_start(words, format);
 for (i = 0; format[i] != '\0'; i++)
 {
@@ -19,21 +20,28 @@ if (format[i] == '%')
 i++;
 if (format[i] == 'c')
 {
-printf("%s%c", comma, va_arg(words, int));
+comma = va_arg(words, int);
+buffer[0] = comma;
+buffer[1] = '\0';
+write(STDOUT_FILENO, buffer, 1);
 charprinted++;
 }
 else if (format[i] == 's')
 {
-printf("%s%s", comma, va_arg(words, char *));
-charprinted++;
+char *s = va_arg(words, char *);
+write(STDOUT_FILENO, s, strlen(s));
+charprinted += strlen(s);
 }
 else if (format[i] == '%')
 {
-putchar('%');
+buffer[0] = '%';
+buffer[1] = '\0';
+write(STDOUT_FILENO, buffer, 1);
+charprinted++;
 }
 else
 {
-putchar(format[i]);
+write(STDOUT_FILENO, &format[i], 1);
 charprinted++;
 }
 }
