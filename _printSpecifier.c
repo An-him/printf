@@ -9,14 +9,20 @@ int _printSpecifier(char format, va_list ap)
 {
 int Total;
 Total = 0;
-if (format == 'c')
+switch (format)
 {
+case 'c':
 Total += _putchar(va_arg(ap, int));
-}
-else if (format == 's')
-{
+break;
+
+case 's':
 Total += _putstring(va_arg(ap, char *));
-}
+break;
+
+case 'b':
+Total = _toBinary(va_arg(ap, unsigned int));
+break;
+
 else
 Total += write(1, &format, 1);
 return (Total);

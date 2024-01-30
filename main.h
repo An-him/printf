@@ -11,4 +11,5 @@ int _printf(const char *format, ...);
 int _putchar(int c);
 int _printSpecifier(char format, va_list ap);
 int _putstring(char *str);
+unsigned int _toBinary(unsigned int dec);
 #endif
