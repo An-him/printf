@@ -4,7 +4,7 @@
  * @str: the string to print
  * Return: int
  */
- int _putstring(char * str)
+int _putstring(char *str)
 {
 	int charPrinted;
 
@@ -15,6 +15,5 @@
 		_putchar(*(str++));
 		charPrinted++;
 	}
-
 	return (charPrinted);
 }
