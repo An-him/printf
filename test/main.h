@@ -19,5 +19,6 @@ int _printSpecifier(const char format, va_list ap);
 /* For conversion specifiers */
 int _putchar(int c);
 int _putstring(char *str);
+int _print_int(int num);
 
 #endif /*ALX*/

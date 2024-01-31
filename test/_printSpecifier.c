@@ -25,6 +25,11 @@ case '%':
 Total += _putchar('%');
 break;
 
+case 'd':
+case 'i':
+Total += _print_int(va_arg(ap, int));
+break;
+
 default:
 Total += write(1, &format, 1);
 break;
