@@ -7,9 +7,6 @@
 
 int _printf(const char *format, ...)
 {
-	if (format == NULL)
-		return (-1);
-
 	va_list ap;
 	int charsprinted;
 
