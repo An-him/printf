@@ -12,7 +12,7 @@ int _putstring(char *str)
 
 	while (str[charprinted] != '\0')
 	{
-		write (1, &str[charprinted], 1);
+		write(1, &str[charprinted], 1);
 		charprinted++;
 	}
 	return (charprinted);
