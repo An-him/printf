@@ -1,15 +1,19 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h>
+/* A list of my header files to use */
+#include <stdarg.h>
 #include <unistd.h>
 #include <string.h>
-#include <stdarg.h>
-#include <limits.h>
+
+/* Here are a list of my prototypes */
 
 int _printf(const char *format, ...);
+
+/* Prototypes for function specifiers */
+
+int _printSpecifier(const char format, va_list ap);
 int _putchar(int c);
-int _printSpecifier(char format, va_list ap);
-int _putstring(char *str);
-unsigned int _toBinary(unsigned int dec);
-#endif
+int _putstring(char * str);
+
+#endif /*ALX*/
