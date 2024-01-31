@@ -12,6 +12,9 @@ int _printf(const char *format, ...)
 
 	charsprinted = 0;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(ap, format);
 
 	while (*format != '\0')
