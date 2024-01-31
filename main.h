@@ -15,6 +15,8 @@ int _printf(const char *format, ...);
 /* Prototypes for function specifiers */
 
 int _printSpecifier(const char format, va_list ap);
+
+/* For conversion specifiers */
 int _putchar(int c);
 int _putstring(char *str);
 

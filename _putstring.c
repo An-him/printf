@@ -6,14 +6,14 @@
  */
 int _putstring(char *str)
 {
-	int charPrinted;
+	int charprinted;
 
-	charPrinted = 0;
+	charprinted = 0;
 
-	while (*str == '\0')
+	while (str[charprinted] != '\0')
 	{
-		_putchar(*(str++));
-		charPrinted++;
+		write (1, &str[charprinted], 1);
+		charprinted++;
 	}
-	return (charPrinted);
+	return (charprinted);
 }
