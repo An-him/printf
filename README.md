@@ -1,4 +1,4 @@
-# We have been tasked to replicate the  printf function
+# Printf Function Replication Project
 
 ## Concepts Required
 
